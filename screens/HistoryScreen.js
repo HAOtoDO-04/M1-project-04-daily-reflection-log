@@ -89,9 +89,15 @@ export default function HistoryScreen({ navigation }) {
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Reflection History</Text>
+          <Text style={styles.headerTitle} accessibilityRole="header">Reflection History</Text>
           {hasActiveFilters ? (
-            <TouchableOpacity onPress={handleClearFilters} style={styles.clearBtn}>
+            <TouchableOpacity
+              onPress={handleClearFilters}
+              style={styles.clearBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Clear Filters"
+              accessibilityHint="Clears search query, mood, and tag filters"
+            >
               <Text style={styles.clearBtnText}>Clear Filters</Text>
             </TouchableOpacity>
           ) : null}
@@ -106,9 +112,16 @@ export default function HistoryScreen({ navigation }) {
             placeholderTextColor={COLORS.textSecondary}
             value={searchQuery}
             onChangeText={setSearchQuery}
+            accessibilityRole="search"
+            accessibilityLabel="Search journal entries"
+            accessibilityHint="Type keywords to search reflections"
           />
           {searchQuery ? (
-            <TouchableOpacity onPress={() => setSearchQuery('')}>
+            <TouchableOpacity
+              onPress={() => setSearchQuery('')}
+              accessibilityRole="button"
+              accessibilityLabel="Clear search query text"
+            >
               <Ionicons name="close-circle" size={18} color={COLORS.textSecondary} />
             </TouchableOpacity>
           ) : null}
@@ -123,6 +136,9 @@ export default function HistoryScreen({ navigation }) {
                 styles.moodPill,
                 selectedMoodFilter === null && styles.moodPillSelected,
               ]}
+              accessibilityRole="button"
+              accessibilityLabel="Filter by All Moods"
+              accessibilityState={{ selected: selectedMoodFilter === null }}
             >
               <Text
                 style={[
@@ -143,6 +159,9 @@ export default function HistoryScreen({ navigation }) {
                     styles.moodPill,
                     isSelected && styles.moodPillSelected,
                   ]}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Filter by ${item.label} mood`}
+                  accessibilityState={{ selected: isSelected }}
                 >
                   <Text style={styles.moodEmoji}>{item.emoji}</Text>
                   <Text
@@ -193,7 +212,12 @@ export default function HistoryScreen({ navigation }) {
                   : 'Start journaling to create your history!'}
               </Text>
               {hasActiveFilters ? (
-                <TouchableOpacity style={styles.resetBtn} onPress={handleClearFilters}>
+                <TouchableOpacity
+                  style={styles.resetBtn}
+                  onPress={handleClearFilters}
+                  accessibilityRole="button"
+                  accessibilityLabel="Reset All Filters"
+                >
                   <Text style={styles.resetBtnText}>Reset All Filters</Text>
                 </TouchableOpacity>
               ) : null}
@@ -219,12 +243,16 @@ export default function HistoryScreen({ navigation }) {
                 <TouchableOpacity
                   style={styles.cancelModalBtn}
                   onPress={() => setEntryToDelete(null)}
+                  accessibilityRole="button"
+                  accessibilityLabel="Cancel entry deletion"
                 >
                   <Text style={styles.cancelModalText}>Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.deleteModalBtn}
                   onPress={confirmDelete}
+                  accessibilityRole="button"
+                  accessibilityLabel="Confirm permanent delete"
                 >
                   <Text style={styles.deleteModalText}>Delete</Text>
                 </TouchableOpacity>

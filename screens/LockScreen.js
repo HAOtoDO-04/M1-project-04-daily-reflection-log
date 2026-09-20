@@ -37,7 +37,7 @@ export default function LockScreen({ onUnlock }) {
             <Ionicons name="lock-closed" size={48} color={COLORS.primary} />
           </View>
 
-          <Text style={styles.title}>MyDaily Protected</Text>
+          <Text style={styles.title} accessible={true} accessibilityRole="header">MyDaily Protected</Text>
           <Text style={styles.subtitle}>
             Your journal reflections are locked to protect your personal privacy.
           </Text>
@@ -47,6 +47,10 @@ export default function LockScreen({ onUnlock }) {
             style={styles.unlockBtn}
             onPress={triggerAuth}
             disabled={authenticating}
+            accessibilityRole="button"
+            accessibilityLabel={authenticating ? 'Verifying device authentication' : 'Unlock Journal'}
+            accessibilityHint="Prompts for Face ID, Touch ID, or phone passcode to unlock"
+            accessibilityState={{ disabled: authenticating }}
           >
             <Ionicons name="finger-print-outline" size={24} color="#FFFFFF" />
             <Text style={styles.unlockBtnText}>

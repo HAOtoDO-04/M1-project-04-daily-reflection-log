@@ -20,6 +20,10 @@ export default function MoodPicker({ selectedMood, onSelectMood, intensity, onSe
                 styles.moodButton,
                 isSelected && styles.moodButtonSelected,
               ]}
+              accessibilityRole="button"
+              accessibilityLabel={`Mood ${item.label} ${item.emoji}`}
+              accessibilityState={{ selected: isSelected }}
+              accessibilityHint={`Selects ${item.label} as your current mood`}
             >
               <Text style={styles.emojiText}>{item.emoji}</Text>
               <Text style={[styles.moodLabel, isSelected && styles.moodLabelSelected]}>
@@ -48,6 +52,10 @@ export default function MoodPicker({ selectedMood, onSelectMood, intensity, onSe
                     styles.levelBadge,
                     isCurrent && styles.levelBadgeSelected,
                   ]}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Mood intensity level ${level} of 5`}
+                  accessibilityState={{ selected: isCurrent }}
+                  accessibilityHint={`Sets mood intensity level to ${level}`}
                 >
                   <Text style={[styles.levelText, isCurrent && styles.levelTextSelected]}>
                     {level}

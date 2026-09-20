@@ -5,7 +5,12 @@ import { COLORS, SPACING, SHADOWS } from '../style';
 
 export default function StreakCard({ currentStreak = 0, longestStreak = 0 }) {
   return (
-    <View style={styles.card}>
+    <View
+      style={styles.card}
+      accessible={true}
+      accessibilityRole="summary"
+      accessibilityLabel={`Reflection Streak stats: ${currentStreak > 0 ? `Current streak is ${currentStreak} days.` : 'No current streak.'} Longest streak is ${longestStreak} days.`}
+    >
       <View style={styles.header}>
         <View style={styles.titleRow}>
           <Ionicons name="flame" size={22} color="#F59E0B" />

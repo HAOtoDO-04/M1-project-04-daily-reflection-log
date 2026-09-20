@@ -68,20 +68,30 @@ export default function JournalDetailScreen({ route, navigation }) {
       <View style={styles.container}>
         {/* Top Navigation Header */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconBtn}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.iconBtn}
+            accessibilityRole="button"
+            accessibilityLabel="Go back"
+            accessibilityHint="Navigates to previous screen"
+          >
             <Ionicons name="arrow-back" size={24} color={COLORS.textPrimary} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Reflection Detail</Text>
+          <Text style={styles.headerTitle} accessible={true} accessibilityRole="header">Reflection Detail</Text>
           <View style={styles.headerActionGroup}>
             <TouchableOpacity
               onPress={() => navigation.navigate('CreateEditJournal', { entryId })}
               style={styles.iconBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Edit reflection entry"
             >
               <Ionicons name="pencil" size={20} color={COLORS.primary} />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setShowDeleteModal(true)}
               style={styles.iconBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Delete reflection entry"
             >
               <Ionicons name="trash-outline" size={20} color={COLORS.danger} />
             </TouchableOpacity>
@@ -144,7 +154,13 @@ export default function JournalDetailScreen({ route, navigation }) {
           {entry.photoUri ? (
             <View style={styles.photoCard}>
               <Text style={styles.cardSectionLabel}>Saved Photo Memory</Text>
-              <Image source={{ uri: entry.photoUri }} style={styles.fullPhoto} />
+              <Image
+                source={{ uri: entry.photoUri }}
+                style={styles.fullPhoto}
+                accessible={true}
+                accessibilityRole="image"
+                accessibilityLabel="Saved full size photo memory"
+              />
             </View>
           ) : null}
 
@@ -181,10 +197,17 @@ export default function JournalDetailScreen({ route, navigation }) {
                 <TouchableOpacity
                   style={styles.cancelModalBtn}
                   onPress={() => setShowDeleteModal(false)}
+                  accessibilityRole="button"
+                  accessibilityLabel="Cancel entry deletion"
                 >
                   <Text style={styles.cancelModalText}>Cancel</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.deleteModalBtn} onPress={handleDelete}>
+                <TouchableOpacity
+                  style={styles.deleteModalBtn}
+                  onPress={handleDelete}
+                  accessibilityRole="button"
+                  accessibilityLabel="Confirm permanent delete"
+                >
                   <Text style={styles.deleteModalText}>Confirm Delete</Text>
                 </TouchableOpacity>
               </View>

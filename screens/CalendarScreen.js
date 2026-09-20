@@ -86,7 +86,7 @@ export default function CalendarScreen({ navigation }) {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Screen Header */}
-        <View style={styles.header}>
+        <View style={styles.header} accessible={true} accessibilityRole="header" accessibilityLabel="Reflection Calendar. Track your journaling consistency">
           <Text style={styles.headerTitle}>Reflection Calendar</Text>
           <Text style={styles.headerSub}>Track your journaling consistency</Text>
         </View>
@@ -101,11 +101,23 @@ export default function CalendarScreen({ navigation }) {
         <View style={styles.calendarCard}>
           {/* Month Switcher Header */}
           <View style={styles.monthHeader}>
-            <TouchableOpacity onPress={() => changeMonth(-1)} style={styles.monthNavBtn}>
+            <TouchableOpacity
+              onPress={() => changeMonth(-1)}
+              style={styles.monthNavBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Previous month"
+              accessibilityHint="Displays previous month in calendar"
+            >
               <Ionicons name="chevron-back" size={20} color={COLORS.primary} />
             </TouchableOpacity>
             <Text style={styles.monthTitle}>{monthYearLabel}</Text>
-            <TouchableOpacity onPress={() => changeMonth(1)} style={styles.monthNavBtn}>
+            <TouchableOpacity
+              onPress={() => changeMonth(1)}
+              style={styles.monthNavBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Next month"
+              accessibilityHint="Displays next month in calendar"
+            >
               <Ionicons name="chevron-forward" size={20} color={COLORS.primary} />
             </TouchableOpacity>
           </View>
@@ -136,6 +148,10 @@ export default function CalendarScreen({ navigation }) {
                     cell.isToday && styles.todayCell,
                     cell.isSelected && styles.selectedCell,
                   ]}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${cell.dayNumber} ${monthYearLabel}${cell.isToday ? ', today' : ''}${cell.hasEntry ? ', has reflection entry' : ''}`}
+                  accessibilityState={{ selected: cell.isSelected }}
+                  accessibilityHint="Select date to view logged reflections"
                 >
                   <Text
                     style={[

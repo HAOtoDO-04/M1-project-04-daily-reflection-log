@@ -6,7 +6,11 @@ import { COLORS, SPACING, SHADOWS } from '../style';
 export default function WeatherWidget({ weather, loading, error, onRefresh }) {
   if (loading) {
     return (
-      <View style={[styles.container, styles.centerContent]}>
+      <View
+        style={[styles.container, styles.centerContent]}
+        accessible={true}
+        accessibilityLabel="Fetching today's weather..."
+      >
         <ActivityIndicator size="small" color={COLORS.primary} />
         <Text style={styles.loadingText}>Fetching today's weather...</Text>
       </View>
@@ -15,7 +19,14 @@ export default function WeatherWidget({ weather, loading, error, onRefresh }) {
 
   if (error && !weather) {
     return (
-      <TouchableOpacity activeOpacity={0.8} style={styles.container} onPress={onRefresh}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.container}
+        onPress={onRefresh}
+        accessibilityRole="button"
+        accessibilityLabel="Weather unavailable. Tap to retry loading weather."
+        accessibilityHint="Retries fetching weather data"
+      >
         <View style={styles.errorRow}>
           <Ionicons name="cloud-offline-outline" size={24} color={COLORS.danger} />
           <View style={styles.errorTextCol}>
@@ -32,7 +43,11 @@ export default function WeatherWidget({ weather, loading, error, onRefresh }) {
   return (
     <View style={styles.container}>
       <View style={styles.contentRow}>
-        <View style={styles.weatherInfo}>
+        <View
+          style={styles.weatherInfo}
+          accessible={true}
+          accessibilityLabel={`Current weather: ${weather.condition}, ${weather.temp} degrees Celsius in ${weather.location}`}
+        >
           <View style={styles.tempRow}>
             <Text style={styles.iconText}>{weather.icon}</Text>
             <Text style={styles.tempText}>{weather.temp}°C</Text>
@@ -44,7 +59,14 @@ export default function WeatherWidget({ weather, loading, error, onRefresh }) {
           </View>
         </View>
 
-        <TouchableOpacity activeOpacity={0.6} style={styles.refreshBtn} onPress={onRefresh}>
+        <TouchableOpacity
+          activeOpacity={0.6}
+          style={styles.refreshBtn}
+          onPress={onRefresh}
+          accessibilityRole="button"
+          accessibilityLabel="Refresh weather data"
+          accessibilityHint="Fetches current weather snapshot"
+        >
           <Ionicons name="refresh-outline" size={18} color={COLORS.primary} />
         </TouchableOpacity>
       </View>

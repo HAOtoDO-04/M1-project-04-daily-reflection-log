@@ -57,10 +57,26 @@ function MainTabs() {
                 },
             })}
         >
-            <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
-            <Tab.Screen name="History" component={HistoryScreen} options={{ title: 'History' }} />
-            <Tab.Screen name="Calendar" component={CalendarScreen} options={{ title: 'Calendar' }} />
-            <Tab.Screen name="Settings" component={SettingsScreen} options={{ title: 'Settings' }} />
+            <Tab.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ title: 'Home', tabBarAccessibilityLabel: 'Home tab' }}
+            />
+            <Tab.Screen
+                name="History"
+                component={HistoryScreen}
+                options={{ title: 'History', tabBarAccessibilityLabel: 'Reflection History tab' }}
+            />
+            <Tab.Screen
+                name="Calendar"
+                component={CalendarScreen}
+                options={{ title: 'Calendar', tabBarAccessibilityLabel: 'Reflection Calendar tab' }}
+            />
+            <Tab.Screen
+                name="Settings"
+                component={SettingsScreen}
+                options={{ title: 'Settings', tabBarAccessibilityLabel: 'Settings and Privacy tab' }}
+            />
         </Tab.Navigator>
     );
 }

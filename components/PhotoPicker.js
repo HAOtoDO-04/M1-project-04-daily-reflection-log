@@ -63,12 +63,21 @@ export default function PhotoPicker({ photoUri, onSelectPhoto, onRemovePhoto }) 
 
       {photoUri ? (
         <View style={styles.previewWrapper}>
-          <Image source={{ uri: photoUri }} style={styles.previewImage} />
+          <Image
+            source={{ uri: photoUri }}
+            style={styles.previewImage}
+            accessible={true}
+            accessibilityRole="image"
+            accessibilityLabel="Attached journal photo memory"
+          />
           <View style={styles.actionOverlay}>
             <TouchableOpacity
               activeOpacity={0.8}
               style={styles.replaceButton}
               onPress={pickImageFromLibrary}
+              accessibilityRole="button"
+              accessibilityLabel="Replace photo"
+              accessibilityHint="Opens photo gallery to select a different photo"
             >
               <Ionicons name="swap-horizontal" size={16} color="#FFFFFF" />
               <Text style={styles.actionButtonText}>Replace</Text>
@@ -78,6 +87,9 @@ export default function PhotoPicker({ photoUri, onSelectPhoto, onRemovePhoto }) 
               activeOpacity={0.8}
               style={styles.removeButton}
               onPress={onRemovePhoto}
+              accessibilityRole="button"
+              accessibilityLabel="Remove photo"
+              accessibilityHint="Removes attached photo"
             >
               <Ionicons name="trash-outline" size={16} color="#FFFFFF" />
               <Text style={styles.actionButtonText}>Remove</Text>
@@ -90,6 +102,9 @@ export default function PhotoPicker({ photoUri, onSelectPhoto, onRemovePhoto }) 
             activeOpacity={0.7}
             style={styles.pickerButton}
             onPress={pickImageFromLibrary}
+            accessibilityRole="button"
+            accessibilityLabel="Choose photo from library"
+            accessibilityHint="Opens photo library"
           >
             <Ionicons name="images-outline" size={24} color={COLORS.primary} />
             <Text style={styles.pickerButtonText}>Choose Photo</Text>
@@ -99,6 +114,9 @@ export default function PhotoPicker({ photoUri, onSelectPhoto, onRemovePhoto }) 
             activeOpacity={0.7}
             style={styles.pickerButton}
             onPress={takePhotoWithCamera}
+            accessibilityRole="button"
+            accessibilityLabel="Take photo with camera"
+            accessibilityHint="Opens device camera"
           >
             <Ionicons name="camera-outline" size={24} color={COLORS.primary} />
             <Text style={styles.pickerButtonText}>Take Photo</Text>

@@ -74,7 +74,7 @@ export default function SettingsScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Header */}
-        <View style={styles.header}>
+        <View style={styles.header} accessible={true} accessibilityRole="header" accessibilityLabel="Settings & Privacy. Manage your app preferences and protection">
           <Text style={styles.headerTitle}>Settings & Privacy</Text>
           <Text style={styles.headerSub}>Manage your app preferences and protection</Text>
         </View>
@@ -98,6 +98,10 @@ export default function SettingsScreen() {
               onValueChange={handleToggleLock}
               trackColor={{ false: COLORS.disabled, true: COLORS.primaryLight }}
               thumbColor={appLockEnabled ? COLORS.primary : '#F4F3F4'}
+              accessibilityRole="switch"
+              accessibilityLabel="Phone Lock and Biometric Authentication"
+              accessibilityState={{ checked: appLockEnabled }}
+              accessibilityHint="Toggles app lock security requirement when opening the app"
             />
           </View>
 

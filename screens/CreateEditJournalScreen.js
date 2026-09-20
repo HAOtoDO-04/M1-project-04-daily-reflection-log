@@ -113,14 +113,29 @@ export default function CreateEditJournalScreen({ route, navigation }) {
         style={{ flex: 1 }}
       >
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}
+            accessibilityRole="button"
+            accessibilityLabel="Go back"
+            accessibilityHint="Navigates to previous screen"
+          >
             <Ionicons name="arrow-back" size={24} color={COLORS.textPrimary} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>{isEditing ? 'Edit Reflection' : 'New Reflection'}</Text>
+          <Text
+            style={styles.headerTitle}
+            accessible={true}
+            accessibilityRole="header"
+          >
+            {isEditing ? 'Edit Reflection' : 'New Reflection'}
+          </Text>
           <TouchableOpacity
             style={[styles.saveHeaderBtn, saving && styles.saveBtnDisabled]}
             onPress={handleSave}
             disabled={saving}
+            accessibilityRole="button"
+            accessibilityLabel={isEditing ? 'Save changes to reflection' : 'Save new reflection'}
+            accessibilityState={{ disabled: saving }}
           >
             <Text style={styles.saveHeaderBtnText}>{saving ? 'Saving...' : 'Save'}</Text>
           </TouchableOpacity>
@@ -155,6 +170,8 @@ export default function CreateEditJournalScreen({ route, navigation }) {
               textAlignVertical="top"
               value={text}
               onChangeText={setText}
+              accessibilityLabel="Journal entry text input"
+              accessibilityHint="Type your daily reflection note here"
             />
           </View>
 
@@ -180,6 +197,9 @@ export default function CreateEditJournalScreen({ route, navigation }) {
             style={[styles.bottomSaveBtn, saving && styles.saveBtnDisabled]}
             onPress={handleSave}
             disabled={saving}
+            accessibilityRole="button"
+            accessibilityLabel={saving ? 'Saving reflection' : isEditing ? 'Update Journal Entry' : 'Save Journal Entry'}
+            accessibilityState={{ disabled: saving }}
           >
             <Ionicons name="checkmark-circle-outline" size={22} color="#FFFFFF" />
             <Text style={styles.bottomSaveBtnText}>

@@ -18,6 +18,9 @@ export default function JournalCard({ entry, onPress }) {
       activeOpacity={0.7}
       onPress={onPress}
       style={styles.card}
+      accessibilityRole="button"
+      accessibilityLabel={`Journal entry from ${formattedDate}, mood ${entry.mood}, intensity ${entry.moodIntensity} out of 5. ${previewText}`}
+      accessibilityHint="Double tap to view full reflection details"
     >
       {/* Header Row: Date & Mood Badge */}
       <View style={styles.headerRow}>
@@ -34,7 +37,13 @@ export default function JournalCard({ entry, onPress }) {
           <Text style={styles.previewText}>{previewText}</Text>
         </View>
         {entry.photoUri ? (
-          <Image source={{ uri: entry.photoUri }} style={styles.thumbnail} />
+          <Image
+            source={{ uri: entry.photoUri }}
+            style={styles.thumbnail}
+            accessible={true}
+            accessibilityRole="image"
+            accessibilityLabel="Attached journal photo thumbnail"
+          />
         ) : null}
       </View>
 

@@ -77,7 +77,12 @@ export default function HomeScreen({ navigation }) {
         }
       >
         {/* Header Greeting */}
-        <View style={styles.header}>
+        <View
+          style={styles.header}
+          accessible={true}
+          accessibilityRole="header"
+          accessibilityLabel={`Welcome Back. Today is ${todayFormatted}`}
+        >
           <View>
             <Text style={styles.dateSubheader}>{todayFormatted}</Text>
             <Text style={styles.headerTitle}>Welcome Back</Text>
@@ -89,6 +94,9 @@ export default function HomeScreen({ navigation }) {
           activeOpacity={0.85}
           style={styles.newJournalBtn}
           onPress={() => navigation.navigate('CreateEditJournal')}
+          accessibilityRole="button"
+          accessibilityLabel="New Journal Entry"
+          accessibilityHint="Navigates to create a new reflection entry"
         >
           <View style={styles.btnIconCircle}>
             <Ionicons name="create" size={22} color={COLORS.primary} />
@@ -118,7 +126,12 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Recent Reflections</Text>
           {entries.length > 0 ? (
-            <TouchableOpacity onPress={() => navigation.navigate('History')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('History')}
+              accessibilityRole="button"
+              accessibilityLabel={`View all ${entries.length} reflection entries`}
+              accessibilityHint="Navigates to Reflection History screen"
+            >
               <Text style={styles.viewAllText}>View All ({entries.length})</Text>
             </TouchableOpacity>
           ) : null}

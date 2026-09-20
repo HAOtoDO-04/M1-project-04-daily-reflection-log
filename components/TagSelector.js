@@ -28,6 +28,10 @@ export default function TagSelector({ selectedTags = [], onToggleTag, label = 'S
                 styles.badge,
                 isSelected && styles.badgeSelected,
               ]}
+              accessibilityRole="button"
+              accessibilityLabel={`Tag ${tag}`}
+              accessibilityState={{ selected: isSelected }}
+              accessibilityHint={isSelected ? `Double tap to remove ${tag} tag` : `Double tap to select ${tag} tag`}
             >
               <Text style={[styles.badgeText, isSelected && styles.badgeTextSelected]}>
                 {isSelected ? '✓ ' : ''}#{tag}
