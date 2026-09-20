@@ -1,15 +1,18 @@
 {
-  "plugins": [
-    "expo-status-bar",
-    "expo-font",
-    "expo-splash-screen"
-  ],
-  "extra": {
-    "eas": {
-      "projectId": "8a4b20ef-29f4-4703-988a-ce3dc7106352"
-    }
-  },
   "expo": {
+    "name": "MyDaily",
+    "slug": "mydaily",
+    "version": "1.0.0",
+    "plugins": [
+      "expo-status-bar",
+      "expo-font",
+      "expo-splash-screen"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8a4b20ef-29f4-4703-988a-ce3dc7106352"
+      }
+    },
     "android": {
       "package": "com.haotodo.mydaily"
     }
